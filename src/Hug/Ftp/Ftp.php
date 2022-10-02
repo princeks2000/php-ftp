@@ -434,10 +434,14 @@ class Ftp
             if(false !== $cid = Ftp::login($server, $user, $password, $port))
             {
                 # Download File
-                if (ftp_get($cid, $local_file, $remote_file, FTP_BINARY, 0))
-                {
-                    $downloaded = true;
-                }
+                $d = ftp_nb_get($cid, $local_file, $remote_file, FTP_BINARY, 0);
+               while ($d == FTP_MOREDATA)
+                  {
+                  // do whatever you want
+                  // continue downloading
+                  $d = ftp_nb_continue($cid);
+                  }
+
                 ftp_close($cid); 
             }
         }
