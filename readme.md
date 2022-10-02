@@ -8,7 +8,7 @@ If you also need SFTP : [php-sftp](https://github.com/hugsbrugs/php-sftp)
 
 Install package with composer
 ```
-composer require hugsbrugs/php-ftp
+composer require princeks2000/php-ftp
 ```
 
 In your PHP code, load librairy
