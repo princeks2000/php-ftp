@@ -434,6 +434,8 @@ class Ftp
             if(false !== $cid = Ftp::login($server, $user, $password, $port))
             {
                 # Download File
+                ftp_set_option($cid, FTP_USEPASVADDRESS, false);
+                ftp_pasv($cid, true);
                 $d = ftp_nb_get($cid, $local_file, $remote_file, FTP_BINARY, 0);
                while ($d == FTP_MOREDATA)
                   {
@@ -719,6 +721,8 @@ class Ftp
         {
             if(false !== $cid = Ftp::login($server, $user, $password, $port))
             {
+                ftp_set_option($cid, FTP_USEPASVADDRESS, false);
+                ftp_pasv($cid, true);
                 if(ftp_put($cid, $remote_file, $local_file, $mode))
                 {
                     $uploaded = true;
@@ -752,6 +756,8 @@ class Ftp
 
         if(false !== $cid = Ftp::login($server, $user, $password, $port))
         {
+            ftp_set_option($cid, FTP_USEPASVADDRESS, false);
+            ftp_pasv($cid, true);
             $files = ftp_nlist($cid, $path);
             ftp_close($cid); 
         } 
