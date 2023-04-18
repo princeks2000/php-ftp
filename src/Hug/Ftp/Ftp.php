@@ -34,6 +34,7 @@ class Ftp
                 # Login into FTP server 
                 if(ftp_login($cid, $user, $password))
                 {
+                    ftp_pasv($cid, true);
                     # Set the network timeout to 10 seconds 
                     ftp_set_option($cid, FTP_TIMEOUT_SEC, 3000);
                 }
